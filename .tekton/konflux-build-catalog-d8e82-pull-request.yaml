@@ -34,6 +34,9 @@ spec:
     value: Containerfile.catalog
   - name: path-context
     value: test/fbc
+  - name: build-args
+    value:
+    - CATALOG_VERSION=v5.0
   pipelineSpec:
     description: |
       This pipeline is ideal for building and verifying [file-based catalogs](https://konflux-ci.dev/docs/end-to-end/building-olm/#building-the-file-based-catalog).
@@ -184,6 +187,9 @@ spec:
         value: $(params.dockerfile)
       - name: CONTEXT
         value: $(params.path-context)
+      - name: BUILD_ARGS
+        value:
+        - $(params.build-args[*])
       - name: SOURCE_ARTIFACT
         value: $(tasks.clone-repository.results.SOURCE_ARTIFACT)
       - name: ociStorage
