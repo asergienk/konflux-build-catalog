@@ -36,7 +36,7 @@ spec:
     value: test/fbc
   - name: build-args
     value:
-    - CATALOG_VERSION=v5.0
+    - CATALOG_VERSION=v4.21
   pipelineSpec:
     description: |
       This pipeline is ideal for building and verifying [file-based catalogs](https://konflux-ci.dev/docs/end-to-end/building-olm/#building-the-file-based-catalog).
