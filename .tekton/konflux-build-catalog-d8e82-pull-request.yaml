@@ -226,11 +226,12 @@ spec:
       - name: ociArtifactExpiresAfter
         value: $(params.image-expires-after)
       - name: OPM_ARGS
-        value: []
+        value:
+          - $(params.opm-args[*])
       - name: OPM_OUTPUT_PATH
-        value: ""
+        value: $(params.opm-output-path)
       - name: IDMS_PATH
-        value: ""
+        value: $(params.idms-path)
       runAfter:
       - fbc-inject-lifecycle
       taskRef:
