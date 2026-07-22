@@ -231,7 +231,7 @@ spec:
       - name: OPM_OUTPUT_PATH
         value: $(params.opm-output-path)
       - name: IDMS_PATH
-        value: $(params.idms-path)
+        value: ""
       runAfter:
       - fbc-inject-lifecycle
       taskRef:
