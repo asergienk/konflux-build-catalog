@@ -34,9 +34,6 @@ spec:
     value: Containerfile.catalog
   - name: path-context
     value: test/fbc
-  - name: build-args
-    value:
-    - CATALOG_VERSION=v5.0
   - name: opm-args
     value:
       - alpha
