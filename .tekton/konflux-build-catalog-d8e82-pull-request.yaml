@@ -33,6 +33,7 @@ spec:
   - name: build-args
     value:
       - CATALOG_VERSION=v5.0
+      - INPUT_DIR=test/fbc
   - name: dockerfile
     value: Containerfile.catalog
   - name: path-context
