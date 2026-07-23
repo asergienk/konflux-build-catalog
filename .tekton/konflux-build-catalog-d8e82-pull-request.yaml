@@ -32,7 +32,7 @@ spec:
       - linux/x86_64
   - name: build-args
     value:
-      - CATALOG_VERSION=v4.21
+      - CATALOG_VERSION=v5.0
       - INPUT_DIR=test/fbc
   - name: dockerfile
     value: Containerfile.catalog
