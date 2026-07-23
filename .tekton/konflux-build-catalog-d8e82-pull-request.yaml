@@ -36,9 +36,6 @@ spec:
     value: test/fbc
   - name: opm-output-path
     value: test/fbc/multicluster-global-hub-operator-rh/catalog-current.yaml
-  - name: build-platforms
-    value:
-      - linux/x86_64
   - name: opm-args
     value:
       - alpha
