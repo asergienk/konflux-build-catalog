@@ -34,14 +34,6 @@ spec:
     value: Containerfile.catalog
   - name: path-context
     value: test/fbc
-  - name: opm-args
-    value:
-      - alpha
-      - render-template
-      - basic
-      - -o=yaml
-      - --migrate-level=bundle-object-to-csv-metadata
-      - test/fbc/catalog-template.yaml
   - name: opm-output-path
     value: test/fbc/multicluster-global-hub-operator-rh/catalog-current.yaml
   pipelineSpec:
