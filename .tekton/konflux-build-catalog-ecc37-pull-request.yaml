@@ -36,7 +36,15 @@ spec:
     value: test/fbc
   - name: build-args
     value:
-      - CATALOG_VERSION=v4.21
+      - CATALOG_VERSION=v5.0
+  - name: opm-args
+    value:
+      - alpha
+      - render-template
+      - basic
+      - -o=yaml
+      - --migrate-level=bundle-object-to-csv-metadata
+      - test/fbc/catalog-template.yaml
   pipelineSpec:
     description: |
       This pipeline is ideal for building and verifying [file-based catalogs](https://konflux-ci.dev/docs/end-to-end/building-olm/#building-the-file-based-catalog).
