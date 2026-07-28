@@ -34,6 +34,9 @@ spec:
     value: Containerfile.catalog
   - name: path-context
     value: test/fbc
+  - name: build-args
+    value:
+      - CATALOG_VERSION=v4.21
   pipelineSpec:
     description: |
       This pipeline is ideal for building and verifying [file-based catalogs](https://konflux-ci.dev/docs/end-to-end/building-olm/#building-the-file-based-catalog).
@@ -178,10 +181,36 @@ spec:
       workspaces:
       - name: basic-auth
         workspace: git-auth
+    - name: fbc-inject-lifecycle
+      taskRef:
+        resolver: bundles
+        params:
+          - name: kind
+            value: task
+          - name: name
+            value: fbc-inject-lifecycle-oci-ta
+          - name: bundle
+            value: quay.io/konflux-ci/tekton-catalog/task-fbc-inject-lifecycle-oci-ta:0.1@sha256:8f7dc31d9fec7a06fc48bc0e740d86565de8fc5d3e5cdcf98e7cc9f4fe7acd02
+      params:
+        - name: DOCKERFILE
+          value: $(params.dockerfile)
+        - name: CONTEXT
+          value: $(params.path-context)
+        - name: BUILD_ARGS
+          value:
+            - $(params.build-args[*])
+        - name: SOURCE_ARTIFACT
+          value: $(tasks.clone-repository.results.SOURCE_ARTIFACT)
+        - name: ociStorage
+          value: $(params.output-image).lifecycle
+        - name: ociArtifactExpiresAfter
+          value: $(params.image-expires-after)
+      runAfter:
+        - clone-repository
     - name: run-opm-command
       params:
       - name: SOURCE_ARTIFACT
-        value: $(tasks.clone-repository.results.SOURCE_ARTIFACT)
+        value: $(tasks.fbc-inject-lifecycle.results.SOURCE_ARTIFACT)
       - name: ociStorage
         value: $(params.output-image).opm
       - name: ociArtifactExpiresAfter
@@ -193,7 +222,7 @@ spec:
       - name: IDMS_PATH
         value: ""
       runAfter:
-      - clone-repository
+      - fbc-inject-lifecycle
       taskRef:
         params:
         - name: name
