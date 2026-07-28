@@ -194,13 +194,13 @@ spec:
     - name: fbc-inject-lifecycle
       taskRef:
         params:
-        - name: url
-          value: https://github.com/asergienk/konflux-operator-tasks.git
-        - name: revision
-          value: switch_to_command_arg
-        - name: pathInRepo
-          value: task/fbc-inject-lifecycle-oci-ta/0.1/fbc-inject-lifecycle-oci-ta.yaml
-        resolver: git
+        - name: name
+          value: fbc-inject-lifecycle-oci-ta
+        - name: bundle
+          value: quay.io/konflux-ci/tekton-catalog/task-fbc-inject-lifecycle-oci-ta:0.1@sha256:a636970f2f7ff1c8156ad92e3c6bde96ce532a3195b24cc3ed4025d7d609e6eb
+        - name: kind
+          value: task
+        resolver: bundles
       params:
         - name: DOCKERFILE
           value: $(params.dockerfile)
